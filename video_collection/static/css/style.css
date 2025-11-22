@@ -1,5 +1,5 @@
 body {
-    background-color: lightblue;
+    background-color: rgb(33, 87, 105);
 }
 
 .navigation {
@@ -7,6 +7,6 @@ body {
 }
 
 .navigation > a {
-    color:rgb(111, 237, 111);
+    color:rgb(24, 97, 24);
     padding-right: 30px;
 }
