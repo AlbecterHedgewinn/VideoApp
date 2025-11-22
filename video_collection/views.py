@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError
-from .forms import VideoForm
+from .forms import VideoForm, SearchForm
 from .models import Video # Lets us query the database
 
 # Create your views here.
@@ -34,5 +34,15 @@ def add(request):
     return render(request, 'video_collection/add.html', {'new_video_form': new_video_form})
 
 def video_list(request):
-    videos = Video.objects.all()
-    return render(request, 'video_collection/video_list.html', {'videos': videos})
+
+    search_form = SearchForm(request.GET) # build form rom the data provided by users of the app
+
+    if search_form.is_valid():
+        search_term = search_form.cleaned_data['search_form']
+        videos = Video.object.filter(name__icontains=search_term).order_by('name')
+
+    else:
+        search_form = SearchForm()
+        videos = Video.objects.order_by('name')
+
+    return render(request, 'video_collection/video_list.html', {'videos': videos, 'search_form': search_form})
