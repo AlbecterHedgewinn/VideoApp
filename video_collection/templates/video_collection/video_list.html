@@ -1,0 +1,22 @@
+{% extends 'video_collection/base.html' %}
+
+{% block content %}
+
+<h2>Video List</h2>
+
+{% for video in videos %}
+    <div>   
+        <h3>{{ video.name }}</h3>
+        <p>{{ vidoe.notes }}</p>
+        <a href="{{video.url}}">{{ video.url }}</a>
+    </div>
+{% endfor %}
+
+<form method="POST" action="{% url 'add_video' %}">
+    {% csrf_token %}
+    {{ new_video_form }}
+    <button type="submit">Add Video</button>
+<form>
+
+
+{% endblock %}
