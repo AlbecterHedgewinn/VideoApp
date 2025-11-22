@@ -11,6 +11,12 @@
     <button type="submit">Search</button>
 </form>
 
+<a href="{% url 'video_url %}">
+    <button>Refresh</button>
+</a>
+
+<h3>{{ videos|Length }} video{{ videos|length|pluralize }} found:</h3>
+
 {% for video in videos %}
     <div>   
         <h3>{{ video.name }}</h3>
