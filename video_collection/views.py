@@ -38,7 +38,7 @@ def video_list(request):
     search_form = SearchForm(request.GET) # build form rom the data provided by users of the app
 
     if search_form.is_valid():
-        search_term = search_form.cleaned_data['search_form']
+        search_term = search_form.cleaned_data['search_term']
         videos = Video.object.filter(name__icontains=search_term).order_by('name')
 
     else:
